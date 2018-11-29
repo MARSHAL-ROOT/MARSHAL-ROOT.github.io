@@ -111,10 +111,10 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-1">
-                    <img class="img-responsive" src="img/mecha.png" alt="">
+                    <img class="img-responsive" src="img/marshal2.png" alt="">
                 </div>
                 <div class="col-lg-5 col-lg-offset-1">
-                    <p>MARSHAL is an explicit maize root system hydraulic architecture solver which connects hydraulic macro-properties with root system architecture. </p>
+                    <p>MARSHAL is a maize root system hydraulic architecture solver which connects hydraulic macro-properties with root system architecture and soil water potential to compute hydraulic macro-properties of the all root system. </p>
 
                     <p>The model computes water flow at the level of root segments, quantifies the contribution of the water flows of each of the root segments, and predicts the whole conductivity of the root system (Krs) and the potential transpiration, as well as  the actual one.</p>
                 </div>
@@ -139,15 +139,18 @@
                 </div>
                 <div class="col-lg-5 col-lg-offset-1">
 
-                    <h4>1. Download MARSHAL</h4>
-                    <p>The source code of MARSHAL is available on github: <a href="https://github.com/MARSHAL-ROOT/marshal">https://github.com/MARSHAL-ROOT/marshal</a></p>
-                    <p>You do not need your own data to try it out.</p>
-					<p>To run MARSHAL in a R environment, a easy way is to look at the illustration pipeline: <a href="https://github.com/MARSHAL-ROOT/marshal-pipeline">https://github.com/MARSHAL-ROOT/marshal-pipeline</a></p>
-                    <p>It allows you to create root system from example files and take some known conductivity values to add on.     
-
-                    <h4>2. Install R</h4>
+                    <h4>1. Install R</h4>
                     <p>The first step before running MARSHAL is to install a working version for R. Installation of R are available here: <a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
-                           
+                         
+                    <h4>2. Download MARSHAL</h4>
+                    <p>The source code of MARSHAL is available on github: <a href="https://github.com/MARSHAL-ROOT/marshal">https://github.com/MARSHAL-ROOT/marshal</a></p>
+					<p>The fast way is to write down the following lines in your R environment.
+					<pre>install.packages("devtools")
+library(devtools)
+install_github("MARSHAL-ROOT/marshal")
+library(marshal)</pre>
+                       
+  
                 </div>
                 <div class="col-lg-5 col-lg-offset-1 ">
                      <h4>3. Install required libraries</h4>
@@ -160,12 +163,11 @@
                      </ul>
                      </p>
 
-                    <h4>4. Run MARSHAL</h4>
-                    <p>Once you have instal the package:</p>
-                    <pre>install.packages("devtools")
-library(devtools)
-install_github("MARSHAL-ROOT/marshal")
-library(marshal)</pre>
+                    <h4>4. Use MARSHAL</h4>
+                    <p>Once you have install all the packages</p>
+					<p>You do not need your own data to try it out.</p>
+					<p>To run MARSHAL in a R environment, one easy way is to look at the illustration pipeline: <a href="https://github.com/MARSHAL-ROOT/marshal-pipeline">https://github.com/MARSHAL-ROOT/marshal-pipeline</a></p>
+                    <p>It allows you to create root system from example files and take some known conductivity values to add on.</p>
 
                 </div>
 
@@ -192,26 +194,30 @@ library(marshal)</pre>
             </div>
             <div class="row">
                 <div class="col-lg-5">
-                    <img class="img-responsive" src="img/marshal2.png" alt="">
+                    <img class="img-responsive" src="img/SUF.gif" alt="">
                 </div>
                 <div class="col-lg-6 ">
                 <h4>Input files</h4>
                     <p>
-                    MECHA uses four parameters files as input, stored in the <code>/in</code> folder in the main MECHA directory:
+                    MARSHAL uses four input files:
                     <ul>
-                        <li><code>General.xml</code> : General simulation parameters</li>
-                        <li><code>BC.xml</code> : Boundary conditions for the simulation. This is where you choose wether the soil is dry, wet, or only partially touch the root.</li>
-                        <li><code>Geometry.xml</code> : Parameters for the root section geometry. This is where you define which root section to use in the simulation.</li>
-                        <li><code>Hydraulics.xml</code> : Hydraulic parameters of the different variables in the simulation</li>
+                        <li>The Root system that comes from CRootBox : <a type="button" class="btn btn-default" href="https://plant-root-soil-interactions-modelling.github.io/CRootBox/"><i class="fa fa-external-link" aria-hidden="true"></i>  CRootBox</a></li>	
+                        <li>The soil water potential along the profile depth. This is where you choose whether the soil is dry or wet.</li>
+                        <li>The conductivities of the different root type: Kr and Kx along the root. The evolution of the conductance is based on the distance from the tip. To calculate other conductivities with the help of another model : <a type="button" class="btn btn-default" href="https://plantmodelling.shinyapps.io/mecha/"><i class="fa fa-external-link" aria-hidden="true"></i>  MECHA</a></li>
+                        <li>The water potential at the collar.</li>
                     </ul>
 
                     </p>
                 <h4>Ouput files</h4>
                     <p>
-                    MECHA output files in a folder defined in the <code>General.xml</code> input file, under the <code>Output</code> tag. Different type of files are generated:
+                    MARSHAL output comes out in a list of elements:
                     <ul>
-                        <li><code>*.PVTK files</code> : These are geometry files that can be open in <a href="http://www.paraview.org/">Paraview</a></li>
-                        <li><code>Macro_prop_i.txt files</code> : Theses files contain synthetic informations about the simulation results. They contain the radial data.</li>
+                        <li>The whole conductivity of the root system (Krs).</li>
+                        <li>The transpiration (Tpot & Tact).</li>
+						<li>The Standard Uptake Fraction (SUF).</li>
+						<li>The radial fluxes of each root segment (Jr).</li>
+						<li>The axial fluxes on top of every root segment (Jxl).</li>
+						<li>The water pressure on each root segment (psi).</li>
                     </ul>
 
                     </p>
@@ -236,24 +242,14 @@ library(marshal)</pre>
             </div>
             <div class="row">
                 <div class="col-lg-5">
-                    <img class="img-responsive" src="img/mecha3.png" alt="">
+                    <img class="img-responsive" src="img/marshal3.png" alt="">
                 </div>
                 <div class="col-lg-6 col-lg-offset-1 ">
                     <p> 
-                    MECHA was developed at the Université catholique de Louvain, in the Earth and Life Insititute, in the lab of <a href="http://www.uclouvain.be/xavier.draye">Xavier Draye</a>.</br></br> 
+                    MARSHAL was developed at the Université catholique de Louvain, in the Earth and Life Insititute, in the lab of <a href="https://uclouvain.be/en/repertoires/Mathieu.Javaux">Mathieu Javaux</a>.</br></br> 
 
-                    The primary developpers of the model are <a href="http://www.uclouvain.be/valentin.couvreur">Valentin Couvreur</a> and Marc Faget.</br></br>
+                    The primary developpers of the model are <a href="https://www.ugent.be/bw/environment/en/research/cavelab/contact/felicienmeunier.htm">Félicien Meunier</a> and Valentin Couvreur.</br></br>
 
-                    </p>
-
-                    <p>
-                    MECHA what first used here:
-
-                    <blockquote>
-                        <a href="https://doi.org/10.1104/pp.18.01006"><b>Going with the flow. Multiscale insights into the composite nature of water transport in roots</b></br>
-                        Valentin Couvreur, Marc Faget, Guillaume Lobet, Mathieu Javaux, François Chaumont and Xavier Draye<br>
-                        Plant Physiology, 2018</a> 
-                    </blockquote>
                     </p>
 
                     <hr>
