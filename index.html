@@ -114,9 +114,9 @@
                     <img class="img-responsive" src="img/marshal2.png" alt="">
                 </div>
                 <div class="col-lg-5 col-lg-offset-1">
-                    <p>MARSHAL is a maize root system hydraulic architecture solver which connects hydraulic macro-properties with root system architecture and soil water potential to compute hydraulic macro-properties of the all root system. </p>
+                    <p>MARSHAL is a maize root system hydraulic architecture solver that combines the root architecture model CRootBox <a href ="https://academic.oup.com/aob/article/121/5/1033/4844040" style="color:white">(Schnepf et al. 2018)</a> with the method for solving water flow in RSHA of <a href="https://www.sciencedirect.com/science/article/pii/S0307904X17305206?via%3Dihub" style="color:white">Meunier et al. (2017)</a> and with the method for computing macroscopic parameter of <a href="https://www.hydrol-earth-syst-sci.net/16/2957/2012/" style="color:white">Couvreur et al. (2012)</a>.</p>
 
-                    <p>The model computes water flow at the level of root segments, quantifies the contribution of the water flows of each of the root segments, and predicts the whole conductivity of the root system (Krs) and the potential transpiration, as well as  the actual one.</p>
+                    <p>The model computes water flow at the level of root segments, quantifies the contribution of the water flows of each of the root segments, and predicts the whole conductivity of the root system (Krs) [cm3.hPa-1.d-1] and the potential transpiration, as well as the actual one [cm3 d-1].</p>
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
                     <p>The first step before running MARSHAL is to install a working version for R. Installation of R are available here: <a href="https://cran.r-project.org/">https://cran.r-project.org/</a></p>
                          
                     <h4>2. Download MARSHAL</h4>
-                    <p>The source code of MARSHAL is available on github: <a href="https://github.com/MARSHAL-ROOT/marshal">https://github.com/MARSHAL-ROOT/marshal</a></p>
+                    <p>The source code of MARSHAL is available on github: <a href="https://github.com/MARSHAL-ROOT/marshal">https://github.com/MARSHAL-ROOT/marshal</a> <a href="https://doi.org/10.5281/zenodo.2391555"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.2391555.svg" alt="DOI"></a></p>
 					<p>The fast way is to write down the following lines in your R environment.
 					<pre>install.packages("devtools")
 library(devtools)
@@ -166,8 +166,14 @@ library(marshal)</pre>
                     <h4>4. Use MARSHAL</h4>
                     <p>Once you have install all the packages</p>
 					<p>You do not need your own data to try it out.</p>
-					<p>To run MARSHAL in a R environment, one easy way is to look at the illustration pipeline: <a href="https://github.com/MARSHAL-ROOT/marshal-pipeline">https://github.com/MARSHAL-ROOT/marshal-pipeline</a></p>
-                    <p>It allows you to create root system from example files and take some known conductivity values to add on.</p>
+					<p>To run MARSHAL in the R environment, one easy way is to look at the illustration <a href="https://github.com/MARSHAL-ROOT/marshal-pipeline/blob/master/R/PipelineMARSHAL.Rmd">pipeline</a>. <a href="https://doi.org/10.5281/zenodo.2474420"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.2474420.svg" alt="DOI"></a></p>
+                    <p>It allows you to:
+					<ul>
+						<li>Create root system architecture from example files</li>
+						<li>Take some known conductivity values to add on</li>
+						<li>Make water soil profile scenarios</li>
+					</ul>
+					</p>
 
                 </div>
 
@@ -202,10 +208,10 @@ library(marshal)</pre>
                     <p>
                     MARSHAL uses four input files:
                     <ul>
-                        <li>The root system architecture that comes from CRootBox : <a type="button" class="btn btn-default" href="https://plant-root-soil-interactions-modelling.github.io/CRootBox/"><i class="fa fa-external-link" aria-hidden="true"></i>  CRootBox</a></li>	
-                        <li>The soil water potential along the profile depth. This is where you choose whether the soil is dry or wet.</li>
-                        <li>The conductivities of the different root type: Kr and Kx along the root. The evolution of the conductance is based on the distance from the tip. To calculate other conductivities with the help of another model : <a type="button" class="btn btn-default" href="https://plantmodelling.shinyapps.io/mecha/"><i class="fa fa-external-link" aria-hidden="true"></i>  MECHA</a></li>
-                        <li>The water potential at the collar.</li>
+                        <li>The root system architecture. Which can comes from any .rsml files or from <a href="https://plant-root-soil-interactions-modelling.github.io/CRootBox/" style="color:white">CRootBox</a> directly.</li>	
+                        <li>The soil water potential along the profile depth. This is where you choose how the water potential [hPa] is distributed along the z axis.</li>
+                        <li>The conductivities of the different root type: Kr [cm.hPa-1.d-1] and Kx [cm4.hPa-1.d-1] along the root. The evolution of the conductance is based on the distance from the tip. To calculate other conductivities with the help of another model: <a type="button" class="btn btn-default" href="https://plantmodelling.shinyapps.io/mecha/"><i class="fa fa-external-link" aria-hidden="true"></i>  MECHA</a></li>
+                        <li>The water potential at the collar [hPa].</li>
                     </ul>
 
                     </p>
